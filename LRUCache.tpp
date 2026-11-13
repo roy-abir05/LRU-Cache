@@ -1,4 +1,4 @@
-#include "LRUCache.hpp"
+#pragma once
 #include <string>
 
 template <typename K, typename V>
