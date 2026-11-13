@@ -1,3 +1,5 @@
+#pragma once
+
 #include <list>
 #include <unordered_map>
 #include <optional>
@@ -16,10 +18,12 @@ class LRUCache
     std::size_t _capacity;
 
 public:
-    LRUCache(std::size_t capacity);
+    explicit LRUCache(std::size_t capacity);
     std::optional<V> get(const K &key);
     void put(const K &key, const V &value);
     bool erase(const K &key);
     std::size_t size() const;
     bool empty() const;
 };
+
+#include "LRUCache.tpp"
