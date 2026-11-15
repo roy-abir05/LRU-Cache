@@ -18,6 +18,30 @@ std::optional<V> LRUCache<K, V>::get(const K &key)
 }
 
 template <typename K, typename V>
+void LRUCache<K, V>::put(const K &key, const V &value)
+{
+    if (_capacity==0) return;
+
+    auto it = _ump.find(key);
+
+    if (it==_ump.end())
+    {
+        if (size()==_capacity)
+        {
+            _ump.erase(_list.back().first);
+            _list.pop_back();
+        }
+        _list.emplace_front(key, value);
+        _ump.emplace(key, _list.begin());
+    }
+    else
+    {
+        it->second->second = value;
+        _list.splice(_list.begin(), _list, it->second);
+    }
+}
+
+template <typename K, typename V>
 std::size_t LRUCache<K, V>::size() const{
     return (this->_list).size();
 }
