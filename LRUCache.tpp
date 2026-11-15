@@ -42,6 +42,17 @@ void LRUCache<K, V>::put(const K &key, const V &value)
 }
 
 template <typename K, typename V>
+bool LRUCache<K, V>::erase(const K &key)
+{
+    auto it = _ump.find(key);
+    if (it==_ump.end()) return false;
+
+    _list.erase(it->second);
+    _ump.erase(it);
+    return true;
+}
+
+template <typename K, typename V>
 std::size_t LRUCache<K, V>::size() const{
     return (this->_list).size();
 }
