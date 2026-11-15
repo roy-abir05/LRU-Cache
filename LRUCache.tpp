@@ -5,6 +5,16 @@ LRUCache<K, V>::LRUCache(std::size_t capacity)
 : _capacity(capacity){}
 
 template <typename K, typename V>
+LRUCache<K, V>::LRUCache(const LRUCache& other)
+: _capacity(other._capacity), _list(other._list)
+{
+    for (auto it = this->_list.begin(); it != this->_list.end(); ++it)
+    {
+        this->_ump.emplace(it->first, it);
+    }
+}
+
+template <typename K, typename V>
 std::optional<V> LRUCache<K, V>::get(const K &key)
 {
     auto it = _ump.find(key);

@@ -51,5 +51,18 @@ int main()
     assert(cache2.get(2).has_value());
     assert(cache2.get(4).has_value());
 
+
+    LRUCache<int, std::string> original(3);
+
+    original.put(1, "one");
+    original.put(2, "two");
+
+    LRUCache<int, std::string> copy = original;
+
+    assert(copy.size() == 2);
+    copy.put(3, "three");
+    assert(copy.size() == 3);
+    assert(original.size() == 2);
+
     return 0;
 }
