@@ -15,6 +15,28 @@ LRUCache<K, V>::LRUCache(const LRUCache& other)
 }
 
 template <typename K, typename V>
+void LRUCache<K, V>::swap(LRUCache& other) noexcept
+{
+    std::swap(this->_capacity, other._capacity);
+    this->_list.swap(other._list);
+    this->_ump.swap(other._ump);
+}
+
+template <typename K, typename V>
+LRUCache<K, V>& LRUCache<K, V>::operator=(const LRUCache& other)
+{
+    if (this==&other) // Self-assignment
+    {
+        return *this;
+    }
+
+    LRUCache<K, V> copy(other);
+    this->swap(copy);
+
+    return *this;
+}
+
+template <typename K, typename V>
 std::optional<V> LRUCache<K, V>::get(const K &key)
 {
     auto it = _ump.find(key);

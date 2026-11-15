@@ -20,6 +20,8 @@ class LRUCache
 public:
     explicit LRUCache(std::size_t capacity);
     LRUCache(const LRUCache& other);
+    void swap(LRUCache& other) noexcept;
+    LRUCache& operator=(const LRUCache& other);
     std::optional<V> get(const K &key);
     void put(const K &key, const V &value);
     bool erase(const K &key);
