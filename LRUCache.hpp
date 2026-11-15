@@ -11,7 +11,7 @@ class LRUCache
 {
 
     using node = std::pair<const K, V>;
-    using node_itr = std::list<node>::iterator;
+    using node_itr = typename std::list<node>::iterator;
 
     std::list<node> _list;
     std::unordered_map<K, node_itr> _ump;
