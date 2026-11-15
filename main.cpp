@@ -60,8 +60,20 @@ int main()
     LRUCache<int, std::string> copy = original;
 
     assert(copy.size() == 2);
+
+    assert(copy.get(1) == "one");
+    assert(copy.get(2) == "two");
+
     copy.put(3, "three");
+    assert(!original.get(3).has_value());
+
     assert(copy.size() == 3);
+    assert(original.size() == 2);
+
+    copy = original;
+    assert(copy.size() == 2);
+
+    original = original;
     assert(original.size() == 2);
 
     return 0;
